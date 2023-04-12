@@ -131,6 +131,12 @@ foreach ($object in $objects)
 		{
 			Write-Verbose "Object Typ is IP/Network"
 
+			if ($object.ziel -match ' - ')
+			{
+				Write-Verbose "Found additional Spaces. Removing"
+				$object.ziel = $object.ziel.replace(" - ","-")
+			}
+
 
 			Write-Verbose "Check for Host /255.255.255.255"
 			if ($object.ziel -match "/255.255.255.255")
